@@ -30,5 +30,5 @@ class ServiceSophia(ConfigSophia):
 
 
 if __name__ == "__main__":
-    conexao = ServiceSophia().conectar_com_o_sophia()
+    conexao = ServiceSophia().listar_colaboradores()
     print(conexao)
