@@ -1,7 +1,7 @@
 import requests
 from asyncio.log import logger
 
-from config.config_sophia import ConfigSophia
+from app.config.config_sophia import ConfigSophia
 
 
 class ServiceSophia(ConfigSophia):

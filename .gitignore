@@ -5,3 +5,6 @@
 __pycache__
 instance
 migrations
+
+tests
+.pytest_cache
