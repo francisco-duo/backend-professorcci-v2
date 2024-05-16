@@ -56,3 +56,7 @@ def remover(objeto) -> None:
     """
     db.session.delete(objeto)
     db.session.commit()
+
+
+def rollback():
+    db.session.rollback()

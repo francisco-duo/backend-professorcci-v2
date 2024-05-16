@@ -1,7 +1,7 @@
 import requests
 from asyncio.log import logger
 
-from app.config.config_sophia import ConfigSophia
+from config.config_sophia import ConfigSophia
 
 
 class ServiceSophia(ConfigSophia):
@@ -18,6 +18,7 @@ class ServiceSophia(ConfigSophia):
             logger.error(f"Erro ao conectar com o serviço {err_conexao}")
 
     def listar_colaboradores(self) -> list:
+        """Retorna uma lista com os colaboradores cadastrados no sophia"""
         try:
             return requests.get(
                 self.colaboradores, headers=self.conectar_com_o_sophia()
@@ -28,7 +29,16 @@ class ServiceSophia(ConfigSophia):
             )
             return []
 
+    def listar_turmas(self) -> list:
+        """Retorna uma lista com as turmas cadastradas no sophia"""
+        try:
+            return requests.get(
+                self.turmas, headers=self.conectar_com_o_sophia()
+            ).json()
+        except Exception as err_listar_turmas:
+            logger.error(f"Erro ao listar turmas\n{err_listar_turmas}")
+
 
 if __name__ == "__main__":
-    conexao = ServiceSophia().listar_colaboradores()
-    print(conexao)
+    conexao = ServiceSophia().listar_turmas()
+    print(conexao[0])

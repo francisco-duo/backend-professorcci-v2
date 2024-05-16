@@ -1,9 +1,9 @@
 from asyncio.log import logger
 from sqlalchemy.exc import IntegrityError
 
-from app.models.colaborador_model import Colaborador
-from app.config.config_database import salvar
-from app.services.service_sophia import ServiceSophia
+from models.colaborador_model import Colaborador
+from config.config_database import salvar, rollback
+from services.service_sophia import ServiceSophia
 
 
 def inserir_colaboradores_na_db():
@@ -29,8 +29,12 @@ def inserir_colaboradores_na_db():
                     salvar(colaborador_modelo)
             except IntegrityError:
                 logger.warning(f"O colaborador {colaborador['nome']} já existe na base de dados")  # noqa: E501
+
+                rollback()
             except Exception as err_inserir_colaborador:
                 logger.error(f"Erro ao inserir o colaborador {colaborador['nome']}: {err_inserir_colaborador}")  # noqa: E501
+
+                rollback()
 
             logger.info(f"Usuário armazenado com sucesso {colaborador.get('nome', '')}")  # noqa: E501
     except Exception as err_colaboradores:

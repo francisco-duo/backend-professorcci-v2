@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from app.config.config_database import db
+from config.config_database import db
 
 
 class Colaborador(db.Model):
