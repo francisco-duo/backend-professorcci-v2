@@ -24,6 +24,7 @@ class Planejamento(db.Model):
     dt_inicio: Mapped[str] = mapped_column()
     dt_termino: Mapped[str] = mapped_column()
     dt_registro: Mapped[str] = mapped_column()
+    planejamento: Mapped[str] = mapped_column()
     cod_classroom: Mapped[str] = mapped_column()
     cod_classroom_material: Mapped[str] = mapped_column()
     publicado: Mapped[str] = mapped_column()

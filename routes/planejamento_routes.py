@@ -27,6 +27,7 @@ def inserir_planejamento() -> jsonify:
         dt_inicio=dados_planejamento.get("dt_inicio", ""),
         dt_termino=dados_planejamento.get("dt_termino", ""),
         dt_registro=dados_planejamento.get("dt_registro", ""),
+        planejamento=dados_planejamento.get("planejamento", ""),
         cod_classroom=dados_planejamento.get("cod_classroom"),
         cod_classroom_material=dados_planejamento.get("cod_classroom_material"),  # noqa: E501
         publicado=dados_planejamento.get("publicado")

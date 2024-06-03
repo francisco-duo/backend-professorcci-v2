@@ -11,7 +11,6 @@ from config.config_migrate import migrate
 from config.config_marshmallow import ma
 from config.config_flask import Desenvolvimento
 from config.config_jwt import jwt
-from config.config_cors import CORS_ENDPOINTS
 
 # Modelos de .models/
 from models.colaborador_model import Colaborador  # noqa: F401
@@ -32,7 +31,22 @@ app: Flask = Flask(__name__)
 app.config.from_object(Desenvolvimento())
 
 # CORS
-CORS(app, origins=CORS_ENDPOINTS)
+CORS(
+    app, resources={
+        r"/autenticacao/*": {
+            "origins": "*",
+            "supports_credentials": True,
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"]
+        },
+        r"/planejamento/*": {
+            "origins": "*",
+            "supports_credentials": True,
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"]
+        },
+    }
+)
 
 # Inicia o banco de dados e migração
 jwt.init_app(app)

@@ -10,3 +10,4 @@ class Desenvolvimento(object):
     SECRET_KEY = "".join(random.choice(random_str) for i in range(12))
     JWT_SECRET_KEY = "".join(random.choice(random_str) for i in range(15))
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
+    CORS_HEADERS = "application/json"
